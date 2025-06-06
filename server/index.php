@@ -4,6 +4,7 @@ $dataFile = __DIR__ . '/data.json';
 $configFile = __DIR__ . '/config.json';
 $data = file_exists($dataFile) ? json_decode(file_get_contents($dataFile), true) : [];
 $config = file_exists($configFile) ? json_decode(file_get_contents($configFile), true) : [];
+$isAdmin = isset($_SESSION['admin']);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -21,7 +22,7 @@ button{background:#444;color:#fff;padding:5px 10px;border:none;border-radius:4px
 <h1>Gestionnaire d'applications</h1>
 <table id="apps" class="display">
 <thead>
-<tr><th></th><th>Nom</th><th>Taille</th><th></th></tr>
+<tr><th></th><th>Nom</th><th>Taille</th><th></th><?php if($isAdmin) echo '<th>Supprimer</th>'; ?></tr>
 </thead>
 <tbody>
 <?php foreach($data as $app): ?>
@@ -30,6 +31,9 @@ button{background:#444;color:#fff;padding:5px 10px;border:none;border-radius:4px
 <td><?= htmlspecialchars($app['name']) ?></td>
 <td><?= number_format($app['size']/1024,2).' Ko' ?></td>
 <td><a href="download.php?app=<?= urlencode($app['name']) ?>"><button>Installer</button></a></td>
+<?php if($isAdmin): ?>
+<td><a href="delete.php?app=<?= urlencode($app['name']) ?>" onclick="return confirm('Supprimer ?');"><button>Supprimer</button></a></td>
+<?php endif; ?>
 </tr>
 <?php endforeach; ?>
 </tbody>
