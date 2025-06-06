@@ -11,7 +11,7 @@ Ce répertoire contient deux parties :
 php -S 0.0.0.0:8080 -t server
 ```
 
-Puis accédez à `http://localhost:8080/index.php` ou `http://localhost:8080/admin.php` pour la partie administration.
+Puis accédez à `http://localhost:8080/index.php` ou `http://localhost:8080/admin.php` pour la partie administration. L'interface d'administration permet maintenant de supprimer les applications existantes.
 
 ## Client Electron
 
