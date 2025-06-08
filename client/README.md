@@ -10,6 +10,8 @@ npm install
 
 ## Lancement
 
+Définissez éventuellement la variable `SKYONE_URL` pour indiquer l'adresse du serveur.
+
 ```
-npm start
+SKYONE_URL=http://localhost:8080/index.php npm start
 ```
