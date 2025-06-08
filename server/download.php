@@ -28,7 +28,10 @@ if(!$apps){
 
 $tmp = tempnam(sys_get_temp_dir(), 'apps');
 $zip = new ZipArchive();
-$zip->open($tmp, ZipArchive::OVERWRITE);
+if($zip->open($tmp, ZipArchive::OVERWRITE) !== true){
+  http_response_code(500);
+  exit('Erreur lors de la création de l\'archive');
+}
 foreach($apps as $app){
   $zip->addFile(__DIR__.'/apps/'.$app['file'], $app['file']);
   if(!empty($app['script'])){

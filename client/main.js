@@ -9,6 +9,7 @@ function createWindow () {
       nodeIntegration: false
     }
   });
-  win.loadURL('https://172.19.21.125/index.php');
+  const url = process.env.SKYONE_URL || 'http://localhost:8080/index.php';
+  win.loadURL(url);
 }
 app.whenReady().then(createWindow);
